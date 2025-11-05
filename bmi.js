@@ -1,0 +1,1 @@
+console.log("BMI JS file loaded");
