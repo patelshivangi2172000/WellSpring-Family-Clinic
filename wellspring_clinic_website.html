@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WellSpring Family Clinic provides quality healthcare for your whole family.">
+  <title>WellSpring Family Clinic</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    header { background: #0a7b83; color: white; padding: 1rem 0; }
+    nav { display: flex; justify-content: center; gap: 1rem; }
+    nav a { color: white; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    section { padding: 2rem 1rem; max-width: 900px; margin: auto; }
+    .banner { background: #e0f7fa; padding: 2rem; text-align: center; border-radius: 10px; }
+    .services-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+    .service { background: #f8f8f8; padding: 1rem; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    input, textarea { padding: 0.75rem; border: 1px solid #ccc; border-radius: 5px; }
+    button { background: #0a7b83; color: white; padding: 0.75rem; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #05696e; }
+    footer { background: #0a7b83; color: white; text-align: center; padding: 1rem; margin-top: 2rem; }
+    @media (max-width: 600px) { nav { flex-direction: column; align-items: center; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="text-align:center">WellSpring Family Clinic</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#bmi">BMI Calculator</a>
+      <a href="#appointment">Appointment</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="home">
+    <div class="banner">
+      <h2>Welcome to WellSpring Family Clinic</h2>
+      <p>Your trusted local family healthcare provider.</p>
+      <p><strong>Clinic Hours:</strong> Mon–Fri: 8am–6pm | Sat: 9am–1pm</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services-list">
+      <div class="service"><h3>General Practice</h3><p>Comprehensive family medical consultations.</p></div>
+      <div class="service"><h3>Immunizations</h3><p>Protect your family with our full range of vaccines.</p></div>
+      <div class="service"><h3>Family Health</h3><p>Preventative and ongoing care for all ages.</p></div>
+    </div>
+  </section>
+
+  <section id="bmi">
+    <h2>BMI Calculator</h2>
+    <form id="bmiForm" onsubmit="event.preventDefault(); calculateBMI();">
+      <label for="height">Height (cm):</label>
+      <input type="number" id="height" required>
+      <label for="weight">Weight (kg):</label>
+      <input type="number" id="weight" required>
+      <button type="submit">Calculate BMI</button>
+    </form>
+    <p id="bmiResult" aria-live="polite" style="margin-top:1rem; font-weight:bold;"></p>
+  </section>
+
+  <section id="appointment">
+    <h2>Appointment Request</h2>
+    <form id="appointmentForm" onsubmit="validateForm(event)">
+      <input type="text" id="name" placeholder="Name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="tel" id="phone" placeholder="Phone" required>
+      <input type="date" id="date" required>
+      <textarea id="message" rows="4" placeholder="Message"></textarea>
+      <button type="submit">Submit Request</button>
+    </form>
+    <p id="formMessage" style="margin-top:1rem; color:green;"></p>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>WellSpring Family Clinic is dedicated to providing quality, compassionate healthcare for the entire family. Our experienced doctors and friendly staff are here to help you maintain a healthy lifestyle and manage your wellbeing.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p><strong>Address:</strong> 123 Health Street, Springfield</p>
+    <p><strong>Phone:</strong> (02) 1234 5678</p>
+    <p><strong>Email:</strong> info@wellspringclinic.com</p>
+    <iframe title="Clinic Map" src="https://www.google.com/maps?q=springfield+australia&output=embed" width="100%" height="250" style="border:0; border-radius:10px;"></iframe>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 WellSpring Family Clinic. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function calculateBMI() {
+      const heightCm = parseFloat(document.getElementById('height').value);
+      const weight = parseFloat(document.getElementById('weight').value);
+      if (!heightCm || !weight) return;
+      const heightM = heightCm / 100;
+      const bmi = (weight / (heightM * heightM)).toFixed(1);
+      let category = '';
+      if (bmi < 18.5) category = 'Underweight';
+      else if (bmi < 25) category = 'Normal';
+      else if (bmi < 30) category = 'Overweight';
+      else category = 'Obese';
+      document.getElementById('bmiResult').textContent = `Your BMI is ${bmi} — ${category}`;
+    }
+
+    function validateForm(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      if (!name || !email || !phone) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+      document.getElementById('formMessage').textContent = 'Appointment request submitted successfully!';
+      document.getElementById('appointmentForm').reset();
+    }
+  </script>
+</body>
+</html>
