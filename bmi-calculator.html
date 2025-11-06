@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator - WellSpring Family Clinic</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>BMI Calculator</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="bmi-calculator.html" class="active">BMI Calculator</a>
+      <a href="appointment.html">Appointment</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section>
+    <h2>Check Your Body Mass Index</h2>
+    <form id="bmiForm">
+      <input type="number" id="height" placeholder="Height (cm)" required>
+      <input type="number" id="weight" placeholder="Weight (kg)" required>
+      <button type="submit">Calculate BMI</button>
+    </form>
+    <p id="bmiResult"></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 WellSpring Family Clinic</p>
+  </footer>
+</body>
+</html>
